@@ -1,7 +1,8 @@
 # import facebook_scraper as fs
-from facebook_scraper import get_posts
+from facebook_scraper import get_posts, write_posts_to_csv
 from datetime import datetime
 import json
+import csv
 
 
 class Post:
@@ -24,19 +25,42 @@ POST_ID = "592LDS"
 cookies = r'D:\Programms\Crawler\FacebookScraper\www.facebook.com_cookies.txt'
 options = {"comments": True,
            "allow_extra_requests": False, "posts_per_page": 5}
+encoding = 'utf-8'
 
-post_list = []
+# region Get posts
 
-for post in get_posts(POST_ID, page_limit=3, cookies=cookies, options=options):
-    if post['text']:
-        p = Post(post['time'], post['text'], post['post_url'])
-        post_list.append(p)
+# post_list = []
+# file_path = r'D:\Programms\Crawler\FacebookScraper\output3.csv'
 
-file_path = r'D:\Programms\Crawler\FacebookScraper\output.json'
+# output_file = open(file_path, 'w', newline='', encoding=encoding)
 
-try:
-    with open(file_path, 'w', encoding='utf-8') as file:
-        json.dump(post_list, file, indent=4,
-                  ensure_ascii=False, cls=PostEncoder)
-except IOError as e:
-    print(f"Error writing to file: {e}")
+# for post in get_posts(POST_ID, page_limit=3, cookies=cookies, options=options):
+#     if post['text']:
+#         keys = list(post.keys())
+#         dict_writer = csv.DictWriter(output_file, keys, extrasaction='ignore')
+#         dict_writer.writeheader()
+#         dict_writer.writerow(post)
+# p = Post(post['time'], post['text'], post['post_url'])
+# post_list.append(p)
+
+# try:
+#     with open(file_path, 'w', newline='', encoding=encoding) as file:
+#         json.dump(post_list, file, indent=4,
+#                   ensure_ascii=False, cls=PostEncoder)
+# except IOError as e:
+#     print(f"Error writing to file: {e}")
+
+# endregion
+
+# region Write posts to csv
+
+filename = r'D:\Programms\Crawler\FacebookScraper\output2.csv'
+
+kwargs = {
+    "cookies": "D:\Programms\Crawler\FacebookScraper\www.facebook.com_cookies.txt",
+}
+
+write_posts_to_csv(**kwargs, filename=filename, pages=3,
+                   encoding='utf-8', account="592LDS", matching=".+", format="json")
+
+# endregion

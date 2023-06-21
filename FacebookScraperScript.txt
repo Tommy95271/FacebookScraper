@@ -1,0 +1,1 @@
+facebook-scraper --filename D:\Programms\Crawler\FacebookScraper\92LDS.csv --pages 1 -c D:\Programms\Crawler\FacebookScraper\www.facebook.com_cookies.txt --encoding utf-8 592LDS
