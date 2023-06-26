@@ -27,12 +27,14 @@ options = {"comments": True,
            "allow_extra_requests": False, "posts_per_page": 5}
 encoding = 'utf-8'
 
+filename = r'D:\Programms\Crawler\FacebookScraper\output.json'
+
 # region Get posts
 
 # post_list = []
 # file_path = r'D:\Programms\Crawler\FacebookScraper\output3.csv'
 
-# output_file = open(file_path, 'w', newline='', encoding=encoding)
+# output_file = open(filename, 'w', newline='', encoding=encoding)
 
 # for post in get_posts(POST_ID, page_limit=3, cookies=cookies, options=options):
 #     if post['text']:
@@ -54,13 +56,11 @@ encoding = 'utf-8'
 
 # region Write posts to csv
 
-filename = r'D:\Programms\Crawler\FacebookScraper\output2.csv'
-
 kwargs = {
     "cookies": "D:\Programms\Crawler\FacebookScraper\www.facebook.com_cookies.txt",
 }
 
-write_posts_to_csv(**kwargs, filename=filename, pages=3,
-                   encoding='utf-8', account="592LDS", matching=".+", format="json")
+write_posts_to_csv(**kwargs, filename=filename, pages=300,
+                   encoding=encoding, account=POST_ID, matching=".+", format="json")
 
 # endregion
