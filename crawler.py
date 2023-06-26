@@ -22,12 +22,12 @@ class PostEncoder(json.JSONEncoder):
 
 
 POST_ID = "592LDS"
-cookies = r'D:\Programms\Crawler\FacebookScraper\www.facebook.com_cookies.txt'
+cookies = r'D:\Programms\Crawler\FacebookScraper\www.facebook.com_cookies_thai.txt'
 options = {"comments": True,
            "allow_extra_requests": False, "posts_per_page": 5}
 encoding = 'utf-8'
 
-filename = r'D:\Programms\Crawler\FacebookScraper\output.json'
+filename = r'D:\Programms\Crawler\FacebookScraper\raw_output.json'
 
 # region Get posts
 
@@ -57,7 +57,7 @@ filename = r'D:\Programms\Crawler\FacebookScraper\output.json'
 # region Write posts to csv
 
 kwargs = {
-    "cookies": "D:\Programms\Crawler\FacebookScraper\www.facebook.com_cookies.txt",
+    "cookies": cookies,
 }
 
 write_posts_to_csv(**kwargs, filename=filename, pages=300,
